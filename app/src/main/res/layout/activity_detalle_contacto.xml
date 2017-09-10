@@ -17,12 +17,13 @@
         android:text="Sergio Weimar"
         android:textStyle="bold"
         android:textSize="30dp"
+        android:textAlignment="center"
         />
     <LinearLayout
         android:id="@+id/llTelefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         >
         <ImageView
@@ -40,13 +41,15 @@
             android:textSize="25dp"
             android:paddingLeft="5dp"
             android:layout_gravity="center_vertical"
+            android:onClick="llamar"
             />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/llMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         >
         <ImageView
@@ -64,6 +67,7 @@
             android:textSize="25dp"
             android:paddingLeft="5dp"
             android:layout_gravity="center_vertical"
+            android:onClick="sendMessage"
             />
     </LinearLayout>
 
