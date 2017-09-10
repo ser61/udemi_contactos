@@ -5,11 +5,19 @@
     android:layout_height="match_parent"
     tools:context="com.weiser.sergio_w.miscontactos.MainActivity">
 
-    <ListView
+   <!-- <ListView
         android:id="@+id/lvLista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
 
-    </ListView>
+    </ListView>-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvLista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>
