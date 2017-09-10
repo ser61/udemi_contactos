@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context="com.weiser.sergio_w.miscontactos.MainActivity">
 
+    <include
+        android:id="@+id/miActionBar"
+        layout="@layout/actionbar"
+        >
+
+    </include>
+
    <!-- <ListView
         android:id="@+id/lvLista"
         android:layout_width="match_parent"
@@ -16,6 +23,7 @@
         android:id="@+id/rvLista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/miActionBar"
         >
 
     </android.support.v7.widget.RecyclerView>
