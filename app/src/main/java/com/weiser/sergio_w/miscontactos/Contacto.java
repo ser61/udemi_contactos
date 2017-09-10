@@ -5,11 +5,13 @@ package com.weiser.sergio_w.miscontactos;
  */
 public class Contacto {
     private String nombre, telefono, email;
+    private int foto;
 
-    public Contacto(String nombre, String telefono, String email) {
+    public Contacto(String nombre, String telefono, String email, int foto) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
+        this.foto = foto;
     }
 
     public String getNombre() {
@@ -34,5 +36,13 @@ public class Contacto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 }

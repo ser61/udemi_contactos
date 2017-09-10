@@ -3,6 +3,8 @@ package com.weiser.sergio_w.miscontactos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,24 +16,21 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Contacto> contactos;
     private ListView lvLista;
+    private RecyclerView rvLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.contactos = new ArrayList<>();
-        contactos.add(new Contacto("Sergio", "45789568", "sergio@gmail.com"));
-        contactos.add(new Contacto("Dennis", "12459678", "denis@yahoo.es"));
-        contactos.add(new Contacto("Sebastian", "7458912", "sebastian@yahoo.es"));
-        contactos.add(new Contacto("Sandra", "754187", "sandra@yahoo.es"));
-        contactos.add(new Contacto("Guido", "712459", "guido@yahoo.es"));
 
-        this.lvLista = (ListView) findViewById(R.id.lvLista);
+        this.rvLista = (RecyclerView) findViewById(R.id.rvLista);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        this.rvLista.setLayoutManager(llm);
+        iniciarLista();
+        iniciarAdapter();
 
-        ArrayList<String> nombres = new ArrayList<>();
-        for (Contacto contacto :contactos) {
-            nombres.add(contacto.getNombre());
-        }
+        /*this.lvLista = (ListView) findViewById(R.id.lvLista);
 
         lvLista.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nombres));
 
@@ -45,6 +44,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        });
+        });*/
+    }
+
+    public void iniciarAdapter() {
+        ContactoAdapter contactoAdapter = new ContactoAdapter(contactos);
+        this.rvLista.setAdapter(contactoAdapter);
+    }
+
+    public void iniciarLista() {
+        this.contactos = new ArrayList<>();
+        contactos.add(new Contacto("Sergio", "45789568", "sergio@gmail.com", R.drawable.user1));
+        contactos.add(new Contacto("Dennis", "12459678", "denis@yahoo.es", R.drawable.user2));
+        contactos.add(new Contacto("Sebastian", "7458912", "sebastian@yahoo.es", R.drawable.user3));
+        contactos.add(new Contacto("Sandra", "754187", "sandra@yahoo.es", R.drawable.user1));
+        contactos.add(new Contacto("Guido", "712459", "guido@yahoo.es", R.drawable.user2));
     }
 }
