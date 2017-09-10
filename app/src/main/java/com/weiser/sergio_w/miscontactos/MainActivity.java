@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarAdapter() {
-        ContactoAdapter contactoAdapter = new ContactoAdapter(contactos);
+        ContactoAdapter contactoAdapter = new ContactoAdapter(contactos, this);
         this.rvLista.setAdapter(contactoAdapter);
     }
 
