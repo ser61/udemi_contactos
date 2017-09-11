@@ -19,9 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Contacto> contactos;
     private ListView lvLista;
-    private RecyclerView rvLista;
     private Toolbar tvToolbar;
     private TabLayout tlTab;
     private ViewPager vpPage;
@@ -36,12 +34,7 @@ public class MainActivity extends AppCompatActivity {
         this.vpPage = (ViewPager) findViewById(R.id.vpPage);
 
         setUpViewPager();
-        /*this.rvLista = (RecyclerView) findViewById(R.id.rvLista);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        this.rvLista.setLayoutManager(llm);
-        iniciarLista();
-        iniciarAdapter();*/
+
 
         if (tvToolbar != null) {
             setSupportActionBar(tvToolbar);
@@ -58,19 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private void setUpViewPager() {
         vpPage.setAdapter(new PageAdaptor(getSupportFragmentManager(), agregarFraments()));
         tlTab.setupWithViewPager(vpPage);
-    }
 
-    public void iniciarAdapter() {
-        ContactoAdapter contactoAdapter = new ContactoAdapter(contactos, this);
-        this.rvLista.setAdapter(contactoAdapter);
-    }
-
-    public void iniciarLista() {
-        this.contactos = new ArrayList<>();
-        contactos.add(new Contacto("Sergio", "45789568", "sergio@gmail.com", R.drawable.user1));
-        contactos.add(new Contacto("Dennis", "12459678", "denis@yahoo.es", R.drawable.user2));
-        contactos.add(new Contacto("Sebastian", "7458912", "sebastian@yahoo.es", R.drawable.user3));
-        contactos.add(new Contacto("Sandra", "754187", "sandra@yahoo.es", R.drawable.user1));
-        contactos.add(new Contacto("Guido", "712459", "guido@yahoo.es", R.drawable.user2));
+        tlTab.getTabAt(0).setIcon(R.drawable.ic_contacs);
+        tlTab.getTabAt(1).setIcon(R.drawable.ic_profile);
     }
 }
