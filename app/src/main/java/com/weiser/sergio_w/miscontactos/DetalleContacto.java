@@ -20,8 +20,6 @@ public class DetalleContacto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_contacto);
-        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        setSupportActionBar(miActionBar);
 
         Bundle bundle = getIntent().getExtras();
         String nombre = bundle.getString("Nombre");

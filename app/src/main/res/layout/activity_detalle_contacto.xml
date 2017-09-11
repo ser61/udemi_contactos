@@ -7,13 +7,6 @@
     android:background="@color/background"
     tools:context="com.weiser.sergio_w.miscontactos.DetalleContacto">
 
-    <include
-        android:id="@+id/miActionBar"
-        layout="@layout/actionbar"
-        >
-
-    </include>
-
     <TextView
         android:id="@+id/tvNombreContacto"
         android:layout_width="match_parent"

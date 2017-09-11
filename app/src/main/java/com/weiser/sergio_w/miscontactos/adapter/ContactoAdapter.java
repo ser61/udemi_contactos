@@ -1,4 +1,4 @@
-package com.weiser.sergio_w.miscontactos;
+package com.weiser.sergio_w.miscontactos.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.weiser.sergio_w.miscontactos.pojo.Contacto;
+import com.weiser.sergio_w.miscontactos.DetalleContacto;
+import com.weiser.sergio_w.miscontactos.R;
 
 import java.util.ArrayList;
 

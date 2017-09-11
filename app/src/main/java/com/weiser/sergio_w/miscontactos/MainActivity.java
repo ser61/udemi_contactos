@@ -1,15 +1,19 @@
 package com.weiser.sergio_w.miscontactos;
 
-import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.weiser.sergio_w.miscontactos.adapter.ContactoAdapter;
+import com.weiser.sergio_w.miscontactos.adapter.PageAdaptor;
+import com.weiser.sergio_w.miscontactos.fragment.PerfilFragment;
+import com.weiser.sergio_w.miscontactos.fragment.RecyclerViewFragment;
+import com.weiser.sergio_w.miscontactos.pojo.Contacto;
 
 import java.util.ArrayList;
 
@@ -18,37 +22,42 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Contacto> contactos;
     private ListView lvLista;
     private RecyclerView rvLista;
+    private Toolbar tvToolbar;
+    private TabLayout tlTab;
+    private ViewPager vpPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        setSupportActionBar(miActionBar);
+        this.tvToolbar = (Toolbar) findViewById(R.id.tbToolbar);
+        this.tlTab = (TabLayout) findViewById(R.id.tabTab);
+        this.vpPage = (ViewPager) findViewById(R.id.vpPage);
 
-        this.rvLista = (RecyclerView) findViewById(R.id.rvLista);
+        setUpViewPager();
+        /*this.rvLista = (RecyclerView) findViewById(R.id.rvLista);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         this.rvLista.setLayoutManager(llm);
         iniciarLista();
-        iniciarAdapter();
+        iniciarAdapter();*/
 
-        /*this.lvLista = (ListView) findViewById(R.id.lvLista);
+        if (tvToolbar != null) {
+            setSupportActionBar(tvToolbar);
+        }
+    }
 
-        lvLista.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nombres));
+    private ArrayList<Fragment> agregarFraments() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilFragment());
+        return fragments;
+    }
 
-        lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this, DetalleContacto.class);
-                intent.putExtra("Nombre", contactos.get(i).getNombre());
-                intent.putExtra("Telefono", contactos.get(i).getTelefono());
-                intent.putExtra("Email", contactos.get(i).getEmail());
-                startActivity(intent);
-                finish();
-            }
-        });*/
+    private void setUpViewPager() {
+        vpPage.setAdapter(new PageAdaptor(getSupportFragmentManager(), agregarFraments()));
+        tlTab.setupWithViewPager(vpPage);
     }
 
     public void iniciarAdapter() {
