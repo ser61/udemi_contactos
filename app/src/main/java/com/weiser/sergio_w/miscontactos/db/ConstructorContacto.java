@@ -6,6 +6,7 @@ import android.content.Context;
 import com.weiser.sergio_w.miscontactos.R;
 import com.weiser.sergio_w.miscontactos.pojo.Contacto;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class ConstructorContacto {
 
+    private static final int LIKE = 1;
     private Context context;
 
     public ConstructorContacto(Context context) {
@@ -21,13 +23,6 @@ public class ConstructorContacto {
     }
 
     public ArrayList<Contacto> obtenerDatos() {
-        /*ArrayList<Contacto> contactos = new ArrayList<>();
-        contactos.add(new Contacto("Sergio", "45789568", "sergio@gmail.com", R.drawable.user1, 8));
-        contactos.add(new Contacto("Dennis", "12459678", "denis@yahoo.es", R.drawable.user2, 5));
-        contactos.add(new Contacto("Sebastian", "7458912", "sebastian@yahoo.es", R.drawable.user3, 1));
-        contactos.add(new Contacto("Sandra", "754187", "sandra@yahoo.es", R.drawable.user1, 4));
-        contactos.add(new Contacto("Guido", "712459", "guido@yahoo.es", R.drawable.user2, 7));*/
-
         BaseDatos db = new BaseDatos(context);
         insertarContactos(db);
         return db.obtenerTodosLosContactos();
@@ -55,5 +50,18 @@ public class ConstructorContacto {
         contentValues.put(ConstantesBD.TABLE_CONTACT_FOTO, R.drawable.user3);
         db.insertarContacto(contentValues);
 
+    }
+
+    public void darLike(Contacto contacto) {
+        BaseDatos db = new BaseDatos(context);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ConstantesBD.TABLE_LIKES_ID_CONTACTO, contacto.getId());
+        contentValues.put(ConstantesBD.TABLE_LIKES_NUMERO_LIKES, LIKE);
+        db.insertarLikeContacto(contentValues);
+    }
+
+    public int obtenerLikesContactos(Contacto contacto) {
+        BaseDatos db = new BaseDatos(context);
+        return db.obtenerLikesContacto(contacto);
     }
 }
