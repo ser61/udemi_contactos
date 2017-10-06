@@ -15,6 +15,10 @@ public class Contacto {
         this.likes = likes;
     }
 
+    public Contacto() {
+
+    }
+
     public int getId() {
         return id;
     }
