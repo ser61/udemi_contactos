@@ -5,13 +5,22 @@ package com.weiser.sergio_w.miscontactos.pojo;
  */
 public class Contacto {
     private String nombre, telefono, email;
-    private int foto;
+    private int id, foto, likes;
 
-    public Contacto(String nombre, String telefono, String email, int foto) {
+    public Contacto(String nombre, String telefono, String email, int foto, int likes) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
         this.foto = foto;
+        this.likes = likes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -44,5 +53,13 @@ public class Contacto {
 
     public void setFoto(int foto) {
         this.foto = foto;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

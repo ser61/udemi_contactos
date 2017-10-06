@@ -41,6 +41,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         contactoViewHolder.ivFoto.setImageResource(contacto.getFoto());
         contactoViewHolder.tvNombre.setText(contacto.getNombre());
         contactoViewHolder.tvTelefono.setText(contacto.getTelefono());
+        contactoViewHolder.tvLikes.setText(String.valueOf(contacto.getLikes()) + " Likes");
 
         contactoViewHolder.ivFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +70,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
     public static class ContactoViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tvNombre, tvTelefono;
+        private TextView tvNombre, tvTelefono, tvLikes;
         private ImageView ivFoto, ivLike;
 
         public ContactoViewHolder(View itemView) {
@@ -78,6 +79,8 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
             this.tvNombre = (TextView) itemView.findViewById(R.id.tvNombre);
             this.tvTelefono = (TextView) itemView.findViewById(R.id.tvTelefono);
             this.ivLike = (ImageView) itemView.findViewById(R.id.ivLike);
+            this.tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
+
         }
     }
 }

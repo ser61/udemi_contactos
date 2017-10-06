@@ -12,14 +12,16 @@ import android.view.ViewGroup;
 import com.weiser.sergio_w.miscontactos.R;
 import com.weiser.sergio_w.miscontactos.adapter.ContactoAdapter;
 import com.weiser.sergio_w.miscontactos.pojo.Contacto;
+import com.weiser.sergio_w.miscontactos.presentador.RecyclerViewFragmentPresenter;
 
 import java.util.ArrayList;
 
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragmentView {
 
     private ArrayList<Contacto> contactos;
     private RecyclerView rvLista;
+    private RecyclerViewFragmentPresenter presenter;
 
     public RecyclerViewFragment() {
         // Required empty public constructor
@@ -28,28 +30,26 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-
         this.rvLista = (RecyclerView) v.findViewById(R.id.rvLista);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        this.rvLista.setLayoutManager(llm);
-        iniciarLista();
-        iniciarAdapter();
-
+        presenter = new RecyclerViewFragmentPresenter(this, getContext());
         return v;
     }
 
-    public void iniciarAdapter() {
-        ContactoAdapter contactoAdapter = new ContactoAdapter(contactos, getActivity());
-        this.rvLista.setAdapter(contactoAdapter);
+    @Override
+    public void generarLinearLayoutVertical() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        this.rvLista.setLayoutManager(llm);
     }
 
-    public void iniciarLista() {
-        this.contactos = new ArrayList<>();
-        contactos.add(new Contacto("Sergio", "45789568", "sergio@gmail.com", R.drawable.user1));
-        contactos.add(new Contacto("Dennis", "12459678", "denis@yahoo.es", R.drawable.user2));
-        contactos.add(new Contacto("Sebastian", "7458912", "sebastian@yahoo.es", R.drawable.user3));
-        contactos.add(new Contacto("Sandra", "754187", "sandra@yahoo.es", R.drawable.user1));
-        contactos.add(new Contacto("Guido", "712459", "guido@yahoo.es", R.drawable.user2));
+    @Override
+    public ContactoAdapter crearAdaptador(ArrayList<Contacto> contactos) {
+        ContactoAdapter contactoAdapter = new ContactoAdapter(contactos, getActivity());
+        return contactoAdapter;
+    }
+
+    @Override
+    public void inicializarAdaptadorRV(ContactoAdapter contactoAdapter) {
+        this.rvLista.setAdapter(contactoAdapter);
     }
 }
